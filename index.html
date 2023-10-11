@@ -147,78 +147,13 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2>Trends across Genders</h2>
-          <p>One interesting trend is that bullying rates have decreased across the years in all regions and genders. Of
-            note
-            is that the bullying rate in boys is now 1.9% lower than that in girls, despite starting 2.2% higher. This
-            change
-            occurred between 2010 and 2011. We speculate that this may be due to the popularisation of social media
-            around this
-            time, allowing for different avenues of bullying, such as cyberbullying, to emerge. </p>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis2" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="vis4" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2>Melbourne Metro Region</h2>
-          <p>The Melbourne metropolitan region has generally reported lower bullying rates than across the state,
-            despite
-            having a range of NAPLAN scores (see above). This may be due to a variety of factors as any factor that
-            attracts
-            families to the city could be an explanation. Some possible examples are the parents education and
-            profession,
-            the funding of the school in question, or even the immigration status of students.
-          </p>
-          <p>
-            Within metropolitan Melbourne, KNOX reported the most bullying in 2016 at 22.6%, and Stonnington the least
-            at 6%.</p>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2>Decline in Bullying</h2>
-          <p>Finally, inspecting the nine most populous LGAs, we find that there has been substantial improvement across
-            the years.
-            Across all nine LGAs, less than one in five students report having experienced bullying recently, a
-            significant improvement. </p>
-          <p>
-            Melbourne, in particular, has always had low bullying numbers, but has since been joined by Monash; both at
-            one student in every eight.
-          </p>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis5" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
-        <p>This visualisation is created by <a href="https://github.com/cywng">Chang Yu Wang</a>, adapted from an
+        <p>This visualisation is created by <a href="https://github.com/zjenl">Zejinyi Liu</a>, adapted from an
           example made by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The data is
           from multiple files found on the <a
-            href="https://discover.data.vic.gov.au/dataset?sort=score+desc%2C+metadata_modified+desc&q=&organization=&groups=education&res_format="
-            target="_blank">Victorian Givernment website</href>.</p>
+            href="https://worldhappiness.report/ed/2023/"
+            target="_blank">World Happiness Report website</href>.</p>
       </div>
     </div>
   </div> <!-- end page -->
@@ -226,9 +161,6 @@
   <script type="text/javascript">
     var specVis1 = "./Visualisations/map.vl.json";
     var specVis2 = "./Visualisations/ScatterPlot.vl.json";
-    var specVis3 = "./Visualisations/InteractiveScatter.json";
-    var specVis4 = "./Visualisations/choroplethMetroMelb.json";
-    var specVis5 = "./Visualisations/dotplot.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -238,17 +170,6 @@
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
-    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
   </script>
 </body>
 
