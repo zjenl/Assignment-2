@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "Container",
-    "height": 600,
+    "height": 400,
     "title": "Happiness Index vs Economy Status by Country (2023)",
     "data": {
       "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
