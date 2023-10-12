@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "Container",
+    "width": 600,
     "height": 400,
     "title": "Happiness Index vs Economy Status by Country (2023)",
     "data": {
