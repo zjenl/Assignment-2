@@ -12,8 +12,7 @@
     "center": {"expr": "center_to"},
     "scale": {"expr": "zoom_level"}
   },
-  "params": [
-    {
+  "params":{
       "name": "zoom_level",
       "value": 140,
       "bind": {
@@ -22,9 +21,8 @@
         "max": 500,
         "step": 10,
         "name": "Zoom: "
-      },
     },
-  ],
+  }
   "layer": [
     {
       "transform": [
