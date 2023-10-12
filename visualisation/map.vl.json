@@ -12,7 +12,8 @@
     "center": {"expr": "center_to"},
     "scale": {"expr": "zoom_level"}
   },
-  "params":{
+  "params": [
+    {
       "name": "zoom_level",
       "value": 140,
       "bind": {
@@ -21,8 +22,35 @@
         "max": 500,
         "step": 10,
         "name": "Zoom: "
+      }
     },
-  }
+    {
+      "name": "center_to",
+      "value": [0, 0],
+      "bind": {
+        "input": "select",
+        "options": [
+          [0, 0],
+          [9.501785, 56.26392],
+          [133.775136, -25.274398],
+          [87.331111, 43.681111],
+          [-99.990278, 48.365278],
+          [-56.096944, -15.595833],
+          [24.697285, 6.769549]
+        ],
+        "labels": [
+          "None",
+          "Europe",
+          "Oceania",
+          "Asia",
+          "North America",
+          "South America",
+          "Africa"
+        ],
+        "name": "Map Centre: "
+      }
+    }
+  ],
   "layer": [
     {
       "transform": [
