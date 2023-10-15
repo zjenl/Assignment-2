@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Density of Doctors (per 10,000 population) in Different Continents Ranked by Average Happiness Index", "subtitle": "   "},
+  "width": 900,
+  "height": 5,
+  "data": {
+    "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_doctor_density.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'Africa': '👨🏿‍⚕️', 'Asia': '🧑🏻‍⚕️', 'North America': '👩‍⚕️', 'Europe': '👩🏼‍⚕️', 'South America': '👩🏽‍⚕️', 'Oceania': '🧑‍⚕️'}[datum.Continent]",
+      "as": "emoji"
+    },
+    {
+      "calculate": "datum.Continent === 'Africa' ? '6. Africa' : datum.Continent",
+      "as": "Continent"
+    },
+    {
+      "calculate": "datum.Continent === 'Asia' ? '5. Asia' : datum.Continent",
+      "as": "Continent"
+    },
+    {
+      "calculate": "datum.Continent === 'South America' ? '4. South America' : datum.Continent",
+      "as": "Continent"
+    },
+    {
+      "calculate": "datum.Continent === 'Europe' ? '2. Europe' : datum.Continent",
+      "as": "Continent"
+    },
+    {
+      "calculate": "datum.Continent === 'Oceania' ? '1. Oceania' : datum.Continent",
+      "as": "Continent"
+    },
+    {
+      "calculate": "datum.Continent === 'North America' ? '3. North America' : datum.Continent",
+      "as": "Continent"
+    },
+    {"window": [{"op": "rank", "as": "rank"}], "groupby": ["Continent"]}
+  ],
+  "mark": {"type": "text", "baseline": "middle"},
+  "encoding": {
+    "x": {"field": "rank", "type": "ordinal", "axis": null},
+    "y": {"field": "Continent", "type": "nominal", "axis": null, "sort": null},
+    "row": {
+      "field": "Continent",
+      "header": {"title": "", "labelAngle": 0, "labelAlign": "left"}
+    },
+    "text": {"field": "emoji", "type": "nominal"},
+    "size": {"value": 30},
+    "tooltip": [
+      {"field": "Continent", "type": "nominal"},
+      {
+        "field": "Happiness",
+        "type": "quantitative",
+        "title": "Average Happiness Index"
+      },
+      {
+        "field": "Number of medical doctors (per 10 000 population)",
+        "type": "quantitative"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "legend": {
+      "labelAlign": "left",
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "title": {"font": "Oxygen", "fontSize": 16, "fontWeight": 600},
+    "arc": {"innerRadius": 100}
+  }
+}

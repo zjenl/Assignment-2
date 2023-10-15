@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Relation Between Social Support, Freedom and Happiness", "subtitle": "   "},
+  "data": {
+    "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.json"
+  },
+  "spacing": 15,
+  "bounds": "flush",
+  "vconcat": [
+    {
+      "mark": "bar",
+      "height": 70,
+      "width": 450,
+      "encoding": {
+        "x": {"bin": {"maxbins": 14}, "field": "Freedom", "axis": null},
+        "y": {
+          "aggregate": "count",
+          "scale": {"domain": [0, 50]},
+          "title": "Count"
+        },
+        "color": {"value": "#fedd84"}
+      }
+    },
+    {
+      "spacing": 15,
+      "bounds": "flush",
+      "hconcat": [
+        {          
+          "height": 450,
+          "width": 450,
+          "layer": [
+            {
+              "mark": "rect",
+              "encoding": {
+                "x": {"bin": {"maxbins": 14}, "field": "Freedom", "title": "Freedom to Make Life Choices"},
+                "y": {"bin": {"maxbins": 14}, "field": "Social_Support", "title": "Sense of Social Support"},
+                "color": {
+                  "aggregate": "count",
+                  "scale": {"type": "linear", "scheme": "yelloworangebrown"},
+                  "legend": {
+                    "title": "Countries Count",
+                    "direction": "vertical",
+                    "gradientLength": 170
+                  }
+                }
+              }
+            },
+            {
+              "mark": "point",
+              "encoding": {
+                "x": {"bin": {"maxbins": 14}, "field": "Freedom", "title": "Freedom to Make Life Choices"},
+                "y": {"bin": {"maxbins": 14}, "field": "Social_Support", "title": "Sense of Social Support"},
+                "size": {
+                  "aggregate": "mean",
+                  "field": "Happiness",
+                  "scale": {
+                    "type": "quantize",
+                    "range": [10, 50, 130, 300, 550]
+                  },
+                  "legend": {"title": "Average Happiness"}
+                },
+                "color": {"value": "#666"}
+              }
+            }
+          ]
+        },
+        {
+          "mark": "bar",
+          "width": 70,
+          "height": 450,
+          "encoding": {
+            "y": {"bin": {"maxbins": 14}, "field": "Social_Support", "title": "Sense of Social Support", "axis": null},
+            "x": {
+              "aggregate": "count",
+              "scale": {"domain": [0, 50]},
+              "title": "Count"
+            },
+            "color": {"value": "#fedd84"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "legend": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "header": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "title": {
+      "font": "Oxygen",
+      "fontSize": 16,
+      "fontWeight": 600
+    }
+  }
+}

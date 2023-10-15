@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
-    "height": 350,
-    "title": "Happiness Index vs Economy Status by Country (2023)",
+    "height": 530,
+    "title": "Happiness Index vs Criminality by Country (2023)",
     "data": {
       "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
     },
@@ -13,9 +13,9 @@
         "bind": {
           "input": "range",
           "min": 0,
-          "max": 110000,
-          "step": 100,
-          "name": "Minimum GDP/Capita: "
+          "max": 3050000,
+          "step": 1000,
+          "name": "Minimum Armed Force Size: "
         }
       },
       {
@@ -45,19 +45,19 @@
       }
     ],
     "transform": [
-      {"filter": "datum['Unemployment rate'] > 0"},
-      {"filter": "datum['GDP per Capita'] > Score_Above"},
+      {"filter": "datum['Criminality'] > 0"},
+      {"filter": "datum['Armed Forces size'] > Score_Above"},
       {
         "filter": "Continent_selection == null || datum.Continent == Continent_selection"
       }
     ],
     "encoding": {
       "x": {
-        "field": "Unemployment rate",
+        "field": "Criminality",
         "type": "quantitative",
-        "title": "Unemployment Rate",
+        "title": "Criminality Score (Out of 10)",
         "axis": {"tickCount": 5},
-        "scale": {"type": "linear", "domain": [0, 0.3]}
+        "scale": {"type": "linear", "domain": [0, 10]}
       },
       "y": {
         "field": "Happiness",
@@ -79,14 +79,14 @@
         "mark": "circle",
         "encoding": {
           "size": {
-            "field": "GDP per Capita",
+            "field": "Armed Forces size",
             "type": "quantitative",
             "scale": {
               "type": "threshold",
-              "domain": [500, 5000, 20000, 50000, 100000],
+              "domain": [1000, 10000, 100000, 1000000, 2000000],
               "range": [10, 50, 150, 200, 300, 400]
             },
-            "legend": {"format": "$.1s"}
+            "legend": {"format": ","}
           },
           "color": {
             "field": "Continent",
@@ -116,11 +116,9 @@
           },
           "tooltip": [
             {"field": "Country", "type": "nominal"},
-            {"field": "Happiness", "type": "quantitative", "title": "Happiness Index"},
-            {"field": "Unemployment rate", "type": "quantitative", "title": "Unemployment Rate"},
-            {"field": "GDP per Capita", "type": "quantitative", "title": "GDP per Capita (USD)", "format": "$,"},
-            {"field": "CPI", "type": "quantitative", "format": ","},
-            {"field": "Minimum wage", "type": "quantitative", "title": "Minimum Wage/hr (USD)", "format": "$,"}
+            {"field": "Armed Forces size", "type": "quantitative", "format": ","},
+            {"field": "Criminality", "type": "quantitative"},
+            {"field": "Happiness", "type": "quantitative", "title": "Happiness Index"}
           ]
         }
       },
@@ -138,18 +136,16 @@
           "color": {"value": "black"},
           "opacity": {
             "condition": {
-              "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' ||  datum['Country'] == 'United States of America'",
+              "test": "datum['Country'] == 'China' || datum['Country'] == 'Russia' || datum['Country'] == 'Australia' || datum['Country'] == 'India' || datum['Country'] == 'Afghanistan' ||  datum['Country'] == 'United States of America'",
               "value": 1
             },
             "value": 0
           },
           "tooltip": [
             {"field": "Country", "type": "nominal"},
-            {"field": "Happiness", "type": "quantitative", "title": "Happiness Index"},
-            {"field": "Unemployment rate", "type": "quantitative", "title": "Unemployment Rate"},
-            {"field": "GDP per Capita", "type": "quantitative", "title": "GDP per Capita (USD)", "format": "$,"},
-            {"field": "CPI", "type": "quantitative", "format": ","},
-            {"field": "Minimum wage", "type": "quantitative", "title": "Minimum Wage/hr (USD)", "format": "$,"}
+            {"field": "Armed Forces size", "type": "quantitative", "format": ","},
+            {"field": "Criminality", "type": "quantitative"},
+            {"field": "Happiness", "type": "quantitative", "title": "Happiness Index"}
           ]
         }
       }

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/global_death_cause.csv"
+  },
+  "padding": 25,
+  "params": [
+    {
+      "name": "Continent_selection",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "width": 400,
+      "height": 400,
+      "title": {"text":"Major Causes of Death (2023)","font": "Oxygen", "fontSize": 16, "fontWeight": 600, "subtitle": "   "},
+      "transform": [
+        {
+          "lookup": "Country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
+            },
+            "key": "Country",
+            "fields": ["Continent", "Happiness", "Life expectancy"]
+          }
+        },
+        {
+          "filter": "Continent_selection === null || datum.Continent == Continent_selection"
+        },
+        {"filter": "datum.Happiness > 3"},
+        {"filter": {"param": "happiness_brush"}},
+        {
+          "aggregate": [{"op": "sum", "field": "val", "as": "total"}, {"op": "mean", "field": "Life expectancy", "as": "avgLifeExpectancy"}],
+          "groupby": ["cause"]
+        }
+      ],
+      "layer": [
+        {
+          "mark": {"type": "text", "baseline": "middle", "font": "Oxygen", "fontWeight": 100},
+          "encoding": {
+            "text": {"value": "Average Life Expectancy"},
+            "y": {"value": 150}, 
+            "color": {"value": "#666"}
+          }
+        },
+        {
+          "mark": {"type": "text", "baseline": "middle", "fontSize": 40, "font": "Oxygen", "fontWeight": 500},
+          "encoding": {
+            "text": {"field": "avgLifeExpectancy", "aggregate": "mean", "type": "quantitative", "format": ".2f"},
+            "color": {"value": "black"}
+          }
+        },
+        {
+          "mark": "arc",
+          "encoding": {
+            "theta": {"field": "total", "type": "quantitative", "stack": true},
+            "order": {
+              "field": "total",
+              "type": "quantitative",
+              "sort": "descending"
+            },
+            "color": {
+              "field": "cause",
+              "type": "nominal",
+              "title": null,
+              "scale": {"scheme": "lightmulti", "reverse": true}
+            },
+            "detail": {"field": "cause", "type": "nominal"},
+            "tooltip": [
+              {"field": "cause", "type": "nominal"},
+              {"field": "total", "type": "quantitative"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "width": 400,
+      "height": 100,
+      "mark": "bar",
+      "title": {"text":"Use this bar chart to filter out the data based on happiness", "subtitle":"   ", "font": "Oxygen", "fontSize": 12, "fontWeight": 600},
+      "data": {
+        "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.json"
+      },
+      "params": [
+        {
+          "name": "happiness_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "transform": [
+        {
+          "filter": "Continent_selection === null || datum.Continent == Continent_selection"
+        },
+        {"filter": "datum.Happiness > 3"}
+      ],
+      "encoding": {
+        "x": {
+          "bin": {"maxbins": 25},
+          "scale": {"domain": [3, 8]},
+          "axis": {"domain": true},
+          "field": "Happiness"
+        },
+        "y": {"aggregate": "count", "title": "Count"},
+        "color": {"value": "#fedd84"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "legend": {
+      "labelAlign": "left",
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen",
+      "orient": "right",
+      "labelFontSize": 10
+    },
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "arc": {"innerRadius": 100}
+  }
+}

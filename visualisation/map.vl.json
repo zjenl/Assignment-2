@@ -2,10 +2,15 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "The World's Happiness Score by Country (2023)",
   "width": 600,
-  "height": 400,
+  "height": 330,
   "data": {
     "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/js/ne_110m_admin_0_countries.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "projection": {
+    "type": "equalEarth",
+    "center": {"expr": "center_to"},
+    "scale": {"expr": "zoom_level"}
   },
   "params": [
     {
@@ -46,11 +51,6 @@
       }
     }
   ],
-  "projection": {
-    "type": "equalEarth",
-    "center": {"expr": "center_to"},
-    "scale": {"expr": "zoom_level"}
-  },
   "layer": [
     {
       "transform": [
@@ -82,17 +82,13 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/zjenl/week_9_viz/main/data/world_happines_2023.csv"
+              "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
             },
             "key": "Country",
             "fields": [
               "Happiness",
-              "Logged_GDP",
-              "Social_Support",
-              "Healthy_Life_Expectancy",
-              "Freedom",
-              "Generosity",
-              "Corruption"
+              "GDP per Capita",
+              "Life expectancy"	
             ]
           }
         },
@@ -106,7 +102,7 @@
           "scale": {
             "type": "threshold",
             "domain": [4, 5, 6, 7],
-            "range": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"]
+            "range": ["#c3b7b3", "#c4a293", "#d68559", "#e15f19", "#df4412"]
           }
         },
         "tooltip": [
@@ -117,34 +113,14 @@
             "title": "Happiness Score (0-10)"
           },
           {
-            "field": "Logged_GDP",
+            "field": "GDP per Capita",
             "type": "quantitative",
-            "title": "Logged GDP per Capita"
+            "title": "GDP per Capita (USD)"
           },
           {
-            "field": "Social_Support",
+            "field": "Life expectancy",
             "type": "quantitative",
-            "title": "Level of Social Support"
-          },
-          {
-            "field": "Healthy_Life_Expectancy",
-            "type": "quantitative",
-            "title": "Healthy Life Expectancy (Years)"
-          },
-          {
-            "field": "Freedom",
-            "type": "quantitative",
-            "title": "Level of Freedom to Make Life Choices"
-          },
-          {
-            "field": "Generosity",
-            "type": "quantitative",
-            "title": "Level of Generosity"
-          },
-          {
-            "field": "Corruption",
-            "type": "quantitative",
-            "title": "Level of Corruption"
+            "title": "Life Expectancy (Years)"
           }
         ]
       }
@@ -175,6 +151,63 @@
           "value": 0
         }
       }
+    },
+    {
+      "data": {
+        "values": [{
+          "x_position": 580,
+          "y_position": 15,
+          "instruction": "GDP per Capita represents the economic output per person in the country."
+        }]
+      },
+      "layer": [{
+        "mark": {
+          "type": "point",
+          "shape": "circle",
+          "size": 200,
+          "stroke": "black",
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "x": {
+            "field": "x_position",
+            "type": "quantitative",
+            "axis": null
+          },
+          "y": {
+            "field": "y_position",
+            "type": "quantitative",
+            "axis": null
+          },
+          "tooltip": 
+          {
+            "field": "instruction",
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "align": "center",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {
+            "field": "x_position",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "y_position",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "?"
+          }
+        }
+      }]
     }
   ],
   "config": {

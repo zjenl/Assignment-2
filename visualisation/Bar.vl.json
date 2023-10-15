@@ -1,0 +1,189 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
+  },
+  "padding": 15,
+  "params": [
+    {
+      "name": "Top_k_Continent",
+      "value": 6,
+      "bind": {
+        "input": "select",
+        "options": ["6", "3"],
+        "labels": ["Top 6", "Top 3"],
+        "name": "Continent Rank: "
+      }
+    },
+    {
+      "name": "Top_k_Country",
+      "value": 10,
+      "bind": {
+        "input": "select",
+        "options": ["20", "15", "10", "5", "3"],
+        "labels": ["Top 20", "Top 15", "Top 10", "Top 5", "Top 3"],
+        "name": "Country Rank: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 200,
+      "height": 250,
+      "title": {"text": "Happiness Index by Continent", "subtitle": "    "},
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "sel_Continent",
+              "select": {"type": "point", "fields": ["Continent"]}
+            },
+            {
+              "name": "highlight",
+              "select": {"type": "point", "on": "mouseover"}
+            }
+          ],
+          "transform": [
+            {"filter": {"param": "sel_Continent"}},
+            {
+              "aggregate": [
+                {"op": "average", "field": "Happiness", "as": "Happiness"}
+              ],
+              "groupby": ["Continent"]
+            },
+            {
+              "window": [{"op": "rank", "as": "rank"}],
+              "sort": [{"field": "Happiness", "order": "descending"}]
+            },
+            {"filter": "datum.rank <= Top_k_Continent"},
+            {"calculate": "split(datum.Continent, ' ')", "as": "Y"}
+          ],
+          "mark": {"type": "bar", "stroke": "black", "cursor": "pointer"},
+          "encoding": {
+            "tooltip": [
+              {"field": "Continent", "type": "nominal", "title": "continent"},
+              {
+                "field": "Happiness",
+                "type": "quantitative",
+                "title": "Happiness Index",
+                "format": ".2f"
+              }
+            ],
+            "x": {
+              "field": "Happiness",
+              "type": "quantitative",
+              "title": "Happiness Index"
+            },
+            "y": {
+              "sort": {"field": "Happiness", "order": "descending"},
+              "field": "Y",
+              "type": "ordinal",
+              "title": null
+            },
+            "fillOpacity": {
+              "condition": {"param": "sel_Continent", "value": 1},
+              "value": 0.3
+            },
+            "color": {
+              "field": "rank",
+              "type": "quantitative",
+              "legend": false,
+              "scale": {"scheme": "reds", "reverse": true}
+            },
+            "strokeWidth": {
+              "condition": [
+                {"param": "sel_Continent", "empty": false, "value": "2"},
+                {"param": "sel_Country", "empty": false, "value": "2"},
+                {"param": "highlight", "empty": false, "value": 1}
+              ],
+              "value": "0.5"
+            },
+            "stroke": {"value": "black"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 300,
+      "height": 250,
+      "title": {"text": "Happiness Index by Country ", "subtitle": "    "},
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "sel_Country",
+              "select": {"type": "point", "fields": ["Country"]}
+            },
+            {
+              "name": "highlight_2",
+              "select": {"type": "point", "on": "mouseover"}
+            }
+          ],
+          "transform": [
+            {"filter": {"param": "sel_Continent"}},
+            {
+              "calculate": "datum.Country === 'United States of America' ? 'America' : datum.Country",
+              "as": "Country"
+            },
+            {
+              "aggregate": [
+                {"op": "average", "field": "Happiness", "as": "Happiness Index"}
+              ],
+              "groupby": ["Country"]
+            },
+            {
+              "window": [{"op": "rank", "as": "rank"}],
+              "sort": [{"field": "Happiness Index", "order": "descending"}]
+            },
+            {"filter": "datum.rank <= Top_k_Country"}
+          ],
+          "mark": {"type": "bar", "stroke": "black", "cursor": "pointer"},
+          "encoding": {
+            "tooltip": [
+              {"field": "Country", "type": "nominal"},
+              {"field": "Happiness Index", "format": ".2f"}
+            ],
+            "x": {
+              "field": "Happiness Index",
+              "type": "quantitative",
+              "title": "Happiness Index"
+            },
+            "y": {
+              "sort": {"field": "Happiness Index", "order": "descending"},
+              "field": "Country",
+              "type": "ordinal",
+              "title": null
+            },
+            "fillOpacity": {
+              "condition": {"param": "sel_Country", "value": 1},
+              "value": 0.3
+            },
+            "color": {
+              "field": "rank",
+              "legend": false,
+              "scale": {"scheme": "yelloworangebrown", "reverse": true}
+            },
+            "strokeWidth": {
+              "condition": [
+                {"param": "sel_Continent", "empty": false, "value": "2"},
+                {"param": "sel_Country", "empty": false, "value": "2"},
+                {"param": "highlight_2", "empty": false, "value": 1}
+              ],
+              "value": "0.5"
+            },
+            "stroke": {"value": "black"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "facet": {"spacing": 3},
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "legend": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "title": {"font": "Oxygen", "fontSize": 16, "fontWeight": 600},
+    "bar": {"cornerRadius": 3}
+  }
+}

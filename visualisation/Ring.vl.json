@@ -1,0 +1,265 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Country Scores (Out of 10)", "subtitle": "   "},
+  "data": {
+    "url": "https://raw.githubusercontent.com/zjenl/Assignment-2/main/data/world_happiness_2023.csv"
+  },
+  "padding": 15,
+  "width": "container",
+  "height": 160,
+  "params": [
+    {
+      "name": "Country_selection",
+      "value": "Australia",
+      "bind": {
+        "input": "search",
+        "name": "Search Country: ",
+        "placeholder": "Type the country's name..."
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Country == Country_selection"},
+    {"calculate": "datum.Jobs / 10 * 5", "as": "theta2Value1"},
+    {"calculate": "datum.Income / 10 * 5", "as": "theta2Value2"},
+    {"calculate": "datum.Safety / 10 * 5", "as": "theta2Value3"},
+    {"calculate": "datum.Health / 10 * 5", "as": "theta2Value4"},
+    {"calculate": "datum.Environment / 10 * 5", "as": "theta2Value5"},
+    {"calculate": "datum.Community / 10 * 5", "as": "theta2Value6"},
+    {"calculate": "datum.Happiness / 10 * 5", "as": "theta2Value7"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 30, "outerRadius": 45, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#bddf93"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 30, "outerRadius": 45, "theta": 0},
+      "encoding": {
+        "theta2": {"field": "theta2Value1", "type": "quantitative"},
+        "color": {"value": "#bddf93"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Jobs", "type": "quantitative", "title":"Jobs Score"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Jobs Score"},
+        "y": {"value": 43},
+        "x": {"value": 135},
+        "color": {"value": "#bddf93"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 45, "outerRadius": 60, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#d8e17e"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 45,
+        "outerRadius": 60,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value2", "type": "quantitative"},
+        "color": {"value": "#d8e17e"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Income", "type": "quantitative", "title":"Income Score"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Income Score"},
+        "y": {"value": 28},
+        "x": {"value": 135},
+        "color": {"value": "#d8e17e"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 60, "outerRadius": 75, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#f6e072"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 60,
+        "outerRadius": 75,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value3", "type": "quantitative"},
+        "color": {"value": "#f6e072"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Safety", "type": "quantitative", "title":"Safety Score"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Safety Score"},
+        "y": {"value": 13},
+        "x": {"value": 135},
+        "color": {"value": "#f6e072"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 75, "outerRadius": 90, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#f6c659"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 75,
+        "outerRadius": 90,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value4", "type": "quantitative"},
+        "color": {"value": "#f6c659"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Health", "type": "quantitative", "title":"Health Score"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Health Score"},
+        "y": {"value": -1},
+        "x": {"value": 135},
+        "color": {"value": "#f6c659"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 90, "outerRadius": 105, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#f4a946"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 90,
+        "outerRadius": 105,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value5", "type": "quantitative"},
+        "color": {"value": "#f4a946"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Environment", "type": "quantitative", "title":"Environment Score"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Environment Score"},
+        "y": {"value": -16},
+        "x": {"value": 135},
+        "color": {"value": "#f4a946"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 105, "outerRadius": 120, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#f58a3f"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 105,
+        "outerRadius": 120,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value6", "type": "quantitative"},
+        "color": {"value": "#f58a3f"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Community", "type": "quantitative", "title":"Community Score"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Community Score"},
+        "y": {"value": -31},
+        "x": {"value": 135},
+        "color": {"value": "#f58a3f"}
+      }
+    },
+    {
+      "mark": {"type": "arc", "innerRadius": 120, "outerRadius": 135, "theta": 0},
+      "encoding": {
+        "theta2": {"value": 5},
+        "color": {"value": "#f56c3f"},
+        "opacity": {"value": 0.2}
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 120,
+        "outerRadius": 135,
+        "theta": 0
+      },
+      "encoding": {
+        "theta2": {"field": "theta2Value7", "type": "quantitative"},
+        "color": {"value": "#f56c3f"},
+        "tooltip":[
+          {"field": "Country", "type": "nominal"},
+          {"field": "Happiness", "type": "quantitative", "title":"Happiness Index"}
+        ]}
+    },
+    {
+      "mark": {"type": "text", "align": "right"},
+      "encoding": {
+        "text": {"value": "Happiness Index"},
+        "y": {"value": -47},
+        "x": {"value": 135},
+        "color": {"value": "#f56c3f"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "legend": {
+      "labelAlign": "left",
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen",
+      "orient": "right",
+      "labelFontSize": 10
+    },
+    "header": {"labelFont": "Oxygen", "titleFont": "Oxygen"},
+    "title": {"font": "Oxygen", "fontSize": 16, "fontWeight": 600}
+  }
+}
