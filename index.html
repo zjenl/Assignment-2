@@ -4,9 +4,10 @@
 <head>
   <title>Global Happiness Index 2023: What Makes People Happy?</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+
 
   <!-- Import pure.css -->
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
@@ -16,6 +17,7 @@
   <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
   <!-- custom style -->
   <style>
@@ -23,10 +25,11 @@
       font-family: 'Oxygen', sans-serif;
       line-height: 1.5;
     }
-
+      
     h1 {
       font-weight: 900;
-
+      font-family: 'Montserrat:wght@900', sans-serif;
+      text-align: center;
     }
 
     body {
@@ -34,11 +37,12 @@
     }
 
     .page {
-      width: 750px;
+      width: 1100px;
       background-color: white;
       margin: auto;
       padding: 70px;
       padding-top: 35px;
+      padding-bottom: 0px;
     }
 
     .vis-container {
@@ -50,12 +54,12 @@
       margin-top: 10px;
     }
 
-    .description-right {
-      padding-left: 10px;
+    .description-left {
+      padding-left: 25px;
     }
 
-    .description-left {
-      padding-right: 10px;
+    .description-right {
+      padding-right: 25px;
     }
 
     .pure-g {
@@ -72,43 +76,68 @@
 
   <div class="page">
 
-    <!-- Title and intro -->
+    <!-- Title -->
     <div class="pure-g">
       <div class="pure-u-1-1">
         <h1>Global Happiness Index 2023: What Makes People Happy?</h1>
-        <p>How happy are people today? How satisfied with their lives are people in different societies? 
-          And how do our living conditions affect all of this?</p>
-        <p>Digging into these big questions is more than just a curious endeavor—it's deeply personal. 
-          In fact, happiness has become a hot topic everywhere, from coffee shop chats to serious economic research.</p>
-        <p>The World Happiness Report of 2023 endeavors to shed light on these very questions. The study is conducted 
-          by surveying representative samples from diverse nations, with individuals rating their lives on varied 
-          parameters and taking the average of these responses. </p>
-    </div>
+      </div>
     <!-- end pure grid group -->
-
-    <!-- Choropleth map -->
+    
+    <!-- Intro -->
     <div class="pure-g">
-      <div class="pure-u-1-1">
-        <iframe src="./visualisation/map.html" width="100%" height="400px" frameborder="0"></iframe>
+      <!-- First column -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p><b>How happy are people today? How satisfied with their lives are people in different societies? 
+            And how do our living conditions affect all of this?</b></p>
+          <p>Digging into these big questions is more than just a curious endeavor—it's deeply personal. 
+            In fact, happiness has become a hot topic everywhere, from coffee shop chats to serious economic research.</p>
+          <p>The World Happiness Report of 2023 endeavors to shed light on these very questions. The study is conducted 
+            by surveying representative samples from diverse nations, with individuals rating their lives on varied 
+            parameters and taking the average of these responses. </p>
+          </div>
+      </div>
+      
+      <!-- Choropleth map -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis1" class="vis-container">
+        </div>
       </div>
     </div>
     <!-- end pure grid group -->
 
-    <!-- more text -->
+    <!-- Still Intro -->
     <div class="pure-g">
-      <div class="pure-u-1-1">
-        <p>From the map above, we can see distinct patterns emerge when looking at continental trends. 
-          Oceania, particularly Australia, stands out with the highest happiness index, recording a value of 7.095. 
-          This is closely followed by North America, which secures the second position with the index ranging from 6-7. 
-          Interestingly, South America exhibits happiness levels akin to Europe, both continents predominantly falling 
-          within the 5-7 range. Asia, while vast and diverse, predominantly displays happiness values between 5 and 6. 
-          Africa registers the lowest values, with most countries on the continent showing happiness indices mainly in 
-          the 3-5 range.</p>
-        <p>What leads to such diversity? We are hoping to get a clearer picture of what's driving happiness (or maybe 
-          the lack of it) around the globe by zooming in on five key areas: economy, environment, health, community, 
-          and safety. By delving into these domains, we aspire to paint a holistic picture of global happiness in 2023, 
-          providing insights and unraveling the factors that sculpt the landscape of global contentment. </p>
+      <!-- First column -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p>From the map above, we can see distinct patterns emerge when looking at continental trends. 
+            Oceania, particularly <b>Australia</b>, stands out with the highest happiness index, recording a value of 7.095. 
+            This is closely followed by <b>North America</b>, which secures the second position with the index ranging from 6-. 
+            Interestingly, <b>South America</b> exhibits happiness levels akin to 
+            </p>
+          </div>
+      </div>
+      
+      <!-- Second column -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p><b>Europe</b>, both continents predominantly falling within the 5-7 range. <b>Asia</b>, while vast and 
+            diverse, predominantly displays happiness values between 5 and 6. 
+            <b>Africa</b> registers the lowest values, with most countries on the continent showing happiness indices mainly in 
+            the 3-5 range.</p>
+          <p>What leads to such diversity? We are hoping </p>
         </div>
+      </div>
+
+      <!-- Third column -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p>to get a clearer picture of what's driving happiness (or maybe 
+            the lack of it) around the globe by zooming in on five key areas: <b>economy, environment, health, community, 
+            and safety</b>. By delving into these domains, we aspire to paint a holistic picture of global happiness in 2023, 
+            providing insights and unraveling the factors that sculpt the landscape of global contentment. </p>
       </div>
     </div>
     <!-- end pure grid group -->
@@ -116,58 +145,355 @@
     <!-- Section Title 1 -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <h2>Economy</h2>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- Scatter Plot -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="vis2" class="vis-container"></div>
+        <div class="description description-right description-left">
+          <h2>Economy</h2>
       </div>
     </div>
     <!-- end pure grid group -->
 
-    <!-- text -->
+    <!-- Economy 1 -->
     <div class="pure-g">
-      <div class="pure-u-1-1">
-        <p><small><i>All currency are in USD.
-            </i></small></p>
-
-        <p>
-          From the scatter plot, it's evident that there's a positive correlation between a country's GDP per capita 
-          and its happiness index. Countries with a GDP per capita in the range of $50k to $100k often exhibit a higher 
-          happiness index. Conversely, lower unemployment rates, particularly those below 0.1%, are also indicative of 
-          higher happiness scores, suggesting that job security and economic stability are significant contributors to 
-          overall well-being. Boasting the highest happiness index globally, Australia has a GDP per capita of $54k 
-          and an unemployment rate of 5.36%. Such data reinforces the notion that while happiness is multifaceted and 
-          influenced by various factors, a robust economy plays a crucial role in enhancing the quality of life and 
-          overall satisfaction of its inhabitants.</p>
+      <!-- Scatter Plot -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis2" class="vis-container"></div>
+          <p><small><i>
+            In the scatter plot above, each point represents a country. Hover over to view details.         
+          </i></small></p>
+        </div>
+      </div>
+        
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p>From the scatter plot, it's evident that there's a positive correlation between a country's GDP per capita 
+            and its happiness index. Countries with a GDP per capita in the range of <b>$50k to $100k</b> often exhibit a higher 
+            happiness index. Conversely, <b>lower unemployment rates</b>, particularly those below 0.1%, are also indicative of 
+            higher happiness scores, suggesting that job security and economic stability are significant contributors 
+            to overall well-being. </p>
+          <p>Boasting the highest happiness index globally, Australia has a <b>GDP per capita of $54k</b> 
+            and an <b>unemployment rate of 5.36%</b>. Such data reinforces the notion that while happiness is multifaceted and 
+            influenced by various factors, a robust economy plays a crucial role in enhancing the quality of life and 
+            overall satisfaction of its inhabitants.</p>
+        </div>
       </div>
     </div>
     <!-- end pure grid group -->
 
+    <!-- Economy 2 -->
+    <div class="pure-g">
+             
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <P>CPI (Consumer Price Index) also plays an important role in people's happiness. It is a measure that assesses the 
+            average change in prices paid by consumers for goods and services over time. It is vital because it helps determine 
+            the purchasing power of money, indicating inflation trends and guiding economic policies. The inflation rate gives
+            information about how the country's CPI has changed from 2022 to 2023, with the negative numbers indicating a drop.</P>
+          <p>From the parallel plot, we can see that <b>most countries have lower inflation rates (below 2.5%)</b>, and the Consumer 
+            Price Index generally exhibits an <b>inverse relationship with the happiness index</b>. Such trends reflect tendency toward 
+            price stability and that elevated living costs decreases levels of overall happiness in a country.</p>
+        </div>
+      </div>
+
+      <!-- Parallel Plot -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis3" class="vis-container"></div>
+          <p><small><i>
+            In the parallel cordinates plot above, each point represents a country. Hover over to view details.         
+          </i></small></p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Section Title 2 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <h2>Environment</h2>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Environment -->
+    <div class="pure-g">
+      <!-- Heatmap -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis4" class="vis-container"></div>
+          <p><small><i>
+            This heatmap displays the relationship between a country's population density (X-axis) and urban population 
+            percentage (Y-axis). The color intensity indicates the number of countries in each segment, while the circles 
+            signify their average happiness score. Use the histograms above and to the right for distribution based on 
+            density and urbanisation rate, respectively.         
+          </i></small></p>
+        </div>
+      </div>
+        
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p>Environment significantly influences people's well-being, with factors like population density and urbanisation
+            rate playing key roles. Density refers to the number of people per km squared, and urbanisation rate refers to 
+            the percentage of the country's population living in urban areas. Densely populated areas can lead to challenges 
+            like overcrowding and noise pollution, reducing people's overall quality of life. Meanwhile, higher urbanisation 
+            rate offers better job opportunities and infrastructure, though they also introduce issues such as pollution and 
+            high living costs.</p>
+          <p>In the heatmap, we can see that <b>most countries have a density between 0-150 people/kmsq</b>, while the urbanisation
+            rate is more distributed. Eventhough there isn't a strict linear relationship, we can see that <b>low density and 
+            high urbanisation rate</b> are often correlated with higher happiness index of the country.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Section Title 3 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <h2>Health</h2>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Health 1 -->
+    <div class="pure-g">
+            
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <P>Health is fundamental to happiness as it enables individuals to live fulfilling lives, pursue their goals, and 
+            enjoy daily activities without physical or mental hindrance. Understanding the main causes of death and average 
+            life expectancies provides insights into public health challenges, helping societies prioritise interventions 
+            and allocate resources efficiently to enhance the well-being and longevity of their populations.</P>
+          <p>From the donut chart, we can see that <b>cardiovascular diseases and neoplasms</b> accounts for most of the deaths in 
+            the world. These 2 diseases are the most severe in Europe and Oceania, however in Africa, <b>respiratory infections 
+            and tuberculosis</b> replaces neoplasms to take the second rank. We can also see a clear positive correlation between
+            life expectancies and happiness index, with Oceania having the highest life expectancy of <b>82.30 years</b> and Africa 
+            having the lowest life expectancy of <b>64.31 years</b>.</p>
+          <p>The isotype dot plot below shows the average number of medical doctors available per 10,000 population in different
+            continents ranked in descending order of the happiness index. In general, <b>higher density of medical doctors is correlated
+            with higher happiness indexes</b>, as it improves the overall health of the country.
+          </p>
+        </div>
+      </div>
+
+      <!-- Donut Chart -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis5" class="vis-container"></div>
+          <p><small><i>
+            The donut chart illustrates the major causes of death in 2023, with each segment representing a different cause. The central 
+            number showcases the average life expectancy across the selected data. Below, the bar chart provides a distribution of happiness 
+            scores, which you can use to filter and explore the relationship between happiness and causes of death.          
+          </i></small></p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Health 2 -->
+    <div class="pure-g">
+      <!-- Isotype Dot Plot -->
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <div id="vis6" class="vis-container"></div>
+          <p><small><i>
+            In this graph, each icon represents a doctor. More icons indicate a higher doctor density in that continent. <br>
+            Continents are ranked from top to bottom based on their average happiness index. Hover over to view details.         
+          </i></small></p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Section Title 4 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <h2>Community</h2>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Community -->
+    <div class="pure-g">
+      <!-- Heatmap -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis7" class="vis-container"></div>
+          <p><small><i>
+            This graph plots the relationship between a country's social support and its citizens' freedom to make life choices.<br>
+            The color intensity indicates the number of countries in each segment, while the circles signify their average happiness 
+            score. Use the sidebars to see the distribution of countries based on social support and freedom.         
+          </i></small></p>
+        </div>
+      </div>
+        
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <p>Community plays a pivotal role in the happiness index, serving as a foundation for emotional and social well-being. 
+            Sense of social support, defined by the World's Happiness Report, is the availability of help and care from family, 
+            friends, or communities. Freedom is referred as the ability to make life choices without undue constraints. It also
+            includes Human Rights, including the right to life and liberty, freedom from slavery and torture, freedom of opinion 
+            and expression, the right to work and education, and many more. These two measures are in the format of a score out 
+            of one, and they directly influence individuals' perceptions of happiness. </p>
+          <p>From the heatmap, it seems that countries with <b>higher levels of social support and greater freedom to make life 
+            choices</b> generally score higher on the happiness index. Additionally, the majority of countries are clustered around 
+            higher social support values and moderate freedom levels, indicating these factors might be prevalent across many nations.
+            On the other hand, countries with <b>low social support and freedom scores</b> are very likely to have very low happiness 
+            scores.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Section Title 5 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <h2>Safety</h2>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Safety -->
+    <div class="pure-g">
+            
+      <!-- Text -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <P>Safety plays a pivotal role in the happiness index. The criminality score by Global Organised Crime Index, a measure 
+            of the prevalence and severity of crimes in a region, can significantly affect happiness; areas with higher criminality 
+            often report lower happiness levels due to increased fear and insecurity. Additionally, the size of the armed forces can 
+            influence perceptions of safety; a well-sized and equipped military can deter external threats, further enhancing a nation's 
+            sense of security and, in turn, its collective happiness.</P>
+          <p>From the scatter plot, we can see that in general, <b>lower criminality aligns with greater national happiness</b>, and this 
+            two attributes exhibits a negative correlation. Armed forced size on the other hand, does not directly correlate with happiness 
+            or crime. Countries like the USA and Australia with moderate sized armed forces boast higher happiness levels, while Afghanistan 
+            presents low happiness with high criminality with similar sized armed force. Countries with vast populations like China and India 
+            also have large armed forces, though this doesn't directly correlate with happiness or crime. </p>
+        </div>
+      </div>
+
+      <!-- Scatter Plot 2 -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis8" class="vis-container"></div>
+          <p><small><i>
+            In the scatter plot above, each point represents a country. Hover over to view details.         
+          </i></small></p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Section Title 6 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description description-right description-left">
+          <h2>Ranks</h2>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Community -->
+    <div class="pure-g">
+      <!-- Bar Graph -->
+      <div class="pure-u-2-3">
+        <div class="description description-right description-left">
+          <div id="vis9" class="vis-container"></div>
+          <p><small><i>
+            The two bar charts plot the continents/countries with top happiness indexes. You can click on the bars in the first bar 
+            chart to view rankings of the countries in the selected continent. You can also select different numbers of ranks you wish 
+            to explore using the dropboxes. Hover over the bars to see details.
+          </i></small></p>
+        </div>
+      </div>
+
+      <!-- Ring Graph -->
+      <div class="pure-u-1-3">
+        <div class="description description-right description-left">
+          <div id="vis10" class="vis-container"></div>
+          <p><small><i>
+            This graph shows the scores of the different areas of the searched country out of 10. The lighter area indicates what a score 
+            of 10 would look like and the darker area indicates the actual score. Hover on top to see details.
+          </i></small></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footnote -->
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
         <p>This visualisation is created by <a href="https://github.com/zjenl">Zejinyi Liu</a>, adapted from an
-          example made by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The data is
-          from multiple files found on the <a
-            href="https://worldhappiness.report/ed/2023/"
-            target="_blank">World Happiness Report website</href>.</p>
+          example made by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>.</br> The Happines Index is
+          provided by the <a href="https://worldhappiness.report/ed/2023/" target="_blank">World Happiness Report</a>.</br> The criminality
+          score provided by <a href="https://ocindex.net/" target="_blank">Global Organised Crime Index</a>.</br> The density of medical
+          doctors around the world is found on <a href="https://www.healthdata.org/research-analysis/gbd" target="_blank">The Institue for 
+          Health Metrics and Evaluation</a>.</br> The scores of different areas of the countries are by <a href="https://www.oecdbetterlifeindex.org/" 
+          target="_blank">OECD Better Life Index</a>.</br> All other global information are found on the 
+          <a href="https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023/" target="_blank">Global Country Information Dataset (2023)</a>.
       </div>
     </div>
-  </div> <!-- end page -->
+    <!-- end page -->
 
   <script type="text/javascript">
     var specVis1 = "./visualisation/map.vl.json";
-    vegaEmbed('#vis1', specVis1);
-    
     var specVis2 = "./visualisation/ScatterPlot.vl.json";
+    var specVis3 = "./visualisation/ParallelPlot.vl.json";
+    var specVis4 = "./visualisation/Heatmap.vl.json";
+    var specVis5 = "./visualisation/Donut.vl.json";
+    var specVis6 = "./visualisation/Isotype.vl.json";
+    var specVis7 = "./visualisation/Heatmap2.vl.json";
+    var specVis8 = "./visualisation/ScatterPlot2.vl.json";
+    var specVis9 = "./visualisation/Bar.vl.json";
+    var specVis10 = "./visualisation/Ring.vl.json";
+
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
 
     vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
-    
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis6', specVis6, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis7', specVis7, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis8', specVis8, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis9', specVis9, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis10', specVis10, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
   </script>
 </body>
 
